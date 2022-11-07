@@ -30,15 +30,6 @@ public class APIController {
     @Autowired
     private DataService dataService;
 
-    private final Bucket bucket;
-
-    public APIController(Bucket bucket) {
-        Bandwidth limit = Bandwidth.classic(50, Refill.greedy(50, Duration.ofMinutes(1)));
-        this.bucket = Bucket.builder()
-                .addLimit(limit)
-                .build();
-    }
-
     @PostMapping(value = "/get-countries-in-continent")
     @ApiOperation(value = "Get all geographical continent information for a given list of countries")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Retrieves the continent of given country along with other countries in the continent.") ,
